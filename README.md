@@ -125,7 +125,7 @@ You need to install the following pre-requisite on your machine.
 
    With the command line below, mitmproxy will be deployed. This proxy requires the creation of a Certificate Authority which will be used for the client authentication with the proxy.
 
-    vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```./scripts/proxy-global-tool.sh -a deploy -k mitmproxy -c ./configuration/test.env -p 8080 -u azureuser -w au -d '.me;.com;.sx;.ru:.la;.tech;.net;.top;.pw;.goog;.org;.eu;.ms;.microsoft;.se;.ip;.co;.click;.online;.us;.xyz;.pro;.info;.best;.re;.love;.at'```
+    vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```./scripts/proxy-global-tool.sh -a deploy -k mitmproxy -c ./configuration/test.env -p 8080 -u azureuser -w au -d '.me;.com;.eu;.ms;.se;.pro;.info;.re;.at'```
 
     When the deployment is completed, the following variables are displayed in the terminal:
 
