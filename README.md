@@ -49,9 +49,9 @@ Once the Git client is installed you can clone the repository on your machine ru
     For instance:
 
     ```bash
-        c:\git> git clone  https://github.com/flecoqui/test-proxy.git 
-        c:\git> cd ./test-proxy
-        c:\git\test-proxy> 
+        c:\git> git clone  https://github.com/Azure-Samples/azure-edge-extensions-mitmproxy-squidproxy.git
+        c:\git> cd ./azure-edge-extensions-mitmproxy-squidproxy
+        c:\git\azure-edge-extensions-mitmproxy-squidproxy> 
     ```
 
 ### Requirements
@@ -84,7 +84,6 @@ You need to install the following pre-requisite on your machine.
 
 1. Launch Visual Studio Code in the folder where you cloned the repository.
 
-
     ~/projects/NNMicrosoftEngagement_V2$ ```code .```
 
 2. Once Visual Studio Code is launched, you should see the following dialog box:
@@ -98,14 +97,12 @@ You need to install the following pre-requisite on your machine.
 
     vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```az login```
 
-
 ## How to deploy and test the proxy infrastructure
 
 1. Before deploying the infrastructure, you need first to get a connection with your Microsoft Entra ID Tenant and Azure Subscription from the Dev Container terminal runninng the following comamnds.  
 
     vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```az login -t [TENANT-ID]```
     vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```az account set --subscription [SUSCRIPTION-ID]```
-
 
 2. You can now create the configuration file to deploy your infrastructure.  
 
@@ -124,9 +121,7 @@ You need to install the following pre-requisite on your machine.
 
    With the command line below, Squid proxy will be deployed.
 
-
     vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```./scripts/proxy-global-tool.sh -a deploy -k squidproxy -c ./configuration/test.env -p 8080 -u azureuser -w au -d 'ifconfig.me;.bing.com;.microsoft.com'```
-
 
    With the command line below, mitmproxy will be deployed. This proxy requires the creation of a Certificate Authority which will be used for the client authentication with the proxy.
 
@@ -151,7 +146,7 @@ You need to install the following pre-requisite on your machine.
 
 Once the deployment is completed, you can test the proxy is fully functionning using the following command:
 
-    vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```./scripts/proxy-global-tool.sh -a test -c ./configuration/test.env```
+vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```./scripts/proxy-global-tool.sh -a test -c ./configuration/test.env```
 
 The test will open "http://ifconfig.me" without proxy to know the local public IP address. Then it will call "http://ifconfig.me" and "https://ifconfig.me" through the proxy to get the public IP address of the proxy, it will test the proxy is supporting 'http' and 'https'.
 It the same command line for Squid Proxy and mitmproxy. The mitmproxy requires a Certificate Authority for the authentication with the proxy.
@@ -160,7 +155,6 @@ It the same command line for Squid Proxy and mitmproxy. The mitmproxy requires a
 
 In the Dev Container, you can use the curl command to test the Squid proxy using the '--proxy' option to set the proxy url with the following format: "http://[user]:[password]@[hostname]:[port]/"
     For instance:
-
 
 vscode ➜ /workspace/azure-edge-extensions-mitmproxy-squidproxy (main) $ ```curl --proxy http://azureuser:au@pipprxdev3315proxy.swedencentral.cloudapp.azure.com:8080/ https://ifconfig.me```
 
